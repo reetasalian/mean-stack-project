@@ -56,11 +56,8 @@ exports.updateTodo = async function(todo){
 exports.deleteTodo = async function(id){
     
     try{
-        var deleted = await ToDo.remove({_id: id})
-        if(deleted.result.n === 0){
-            throw Error("Todo Could not be deleted")
-        }
-        return deleted
+        var deleted = await ToDo.deleteOne({_id: id});
+        return deleted;
     }catch(e){
         throw Error("Error Occured while Deleting the Todo")
     }
