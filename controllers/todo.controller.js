@@ -18,9 +18,9 @@ exports.createTodo = async function(req, res, next){
     var todo = {
         title: req.body.title,
         isCompleted: req.body.isCompleted,
-        date: req.body.date
+        // date: req.body.date
     }
-
+    console.log("Inside createTodo");
     try{
         var createdTodo = await TodoService.createTodo(todo)
         return res.status(201).json({status: 201, data: createdTodo, message: "Succesfully Created ToDo"})
@@ -42,7 +42,7 @@ exports.updateTodo = async function(req, res, next){
         id,
         title: req.body.title ? req.body.title : null,
         isCompleted: req.body.isCompleted ? req.body.isCompleted : null,
-        date: req.body.date ? req.body.date : null
+        // date: req.body.date ? req.body.date : null
     }
 
     try{

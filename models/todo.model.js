@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 var todoSchema = new mongoose.Schema({
     title : String,
-    isCompleted : Boolean,
-    date : Date
+    isCompleted : Boolean
 })
 
 module.exports = mongoose.model('ToDo',todoSchema);
+    // date : Date
