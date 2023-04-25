@@ -1,33 +1,25 @@
 var ToDo = require('../models/todo.model')
 
-_this = this
-
-
-exports.getTodos = async function(query, page, limit){
-    var options = {
-        page,
-        limit
-    }
+exports.getTodos = async function(req, res){
     try {
-        var todos = await ToDo.paginate(query, options)
-        return todos;
-    } catch (e) {
-        throw Error('Error while Paginating Todos')
+        const todos = await ToDo.find();
+        res.json(todos);
+    } catch(err){
+        res.send('Get All To Do Error -',err)
     }
 }
 
 exports.createTodo = async function(todo){
-
     var newTodo = new ToDo({
         title: todo.title,
         isCompleted: todo.isCompleted,
         // date: new Date(),
     })
 
-    try{
+    try {
         var savedTodo = await newTodo.save()
         return savedTodo;
-    }catch(e){
+    } catch(e) {
         throw Error("Error while Creating Todo")
     }
 }
