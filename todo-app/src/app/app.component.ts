@@ -13,6 +13,7 @@ export class AppComponent {
   todosList!: Todo[];
   public newTodo: Todo = new Todo();
   editTodos: Todo[] = [];
+  showCreateToDo : boolean = false;
 
   constructor(private todoService: TodoService){
   }
@@ -25,12 +26,18 @@ export class AppComponent {
       })
   }
 
+  createToDo(){
+    this.showCreateToDo = true;
+  }
+
   create() {
     this.todoService.createTodo(this.newTodo)
       .subscribe((res) => {
         this.todosList.push(res.data)
         this.newTodo = new Todo();
+        this.showCreateToDo = false;
       })
+    
   }
 
   editTodo(todo: Todo) {

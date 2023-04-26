@@ -1,14 +1,36 @@
-#app-title
-    {
-        display: flex;
-        justify-content: center;
-    }
-
-.btn{
-    cursor: pointer;
+.row {
+  display: flex;
+  justify-content: center;
 }
 
-td{
-    white-space: nowrap;
-    overflow: hidden;
+#app-title{
+  text-align: center;
+}
+
+#createToDo{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.todos{
+  margin: 20px;
+}
+
+.btn {
+  cursor: pointer;
+  margin: 2px;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.form-row{
+  display: flex;
+  justify-content: center;
+
+  div{
+    margin: 5px;
+  }
 }
