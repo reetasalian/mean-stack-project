@@ -7,8 +7,15 @@
       <button type="submit" class="btn btn-primary" (click)="createToDo()">
         <i class="fa fa-solid fa-plus"></i>
       </button>
-      <form *ngIf="showCreateToDo">
-        <div class="form-row">
+      <form
+        role="form"
+        class="form"
+        *ngIf="showCreateToDo"
+        (ngSubmit)="onSubmit(form)"
+        #form="ngForm"
+        ngNativeValidate
+      >
+        <div class="form-group row">
           <div class="col-md-5">
             <input
               type="text"
@@ -20,13 +27,21 @@
             />
           </div>
           <div class="col-md-5">
-            <input
-              name="status"
-              id="status"
-              [(ngModel)]="newTodo.isCompleted"
-              placeholder="Status"
-              class="form-control"
-            />
+            <fieldset class="form-group">
+              <select
+                class="form-control"
+                id="status"
+                [(ngModel)]="newTodo.status"
+                name="Status"
+                required
+                placeholder="d.ff"
+              >
+                <option hidden value="0" disabled selected>Select Status</option>
+                <option *ngFor="let item of statusList" [value]="item.status">
+                  {{ item.status }}
+                </option>
+              </select>
+            </fieldset>
           </div>
           <div class="col-md-2">
             <button type="submit" class="btn btn-primary" (click)="create()">
@@ -52,7 +67,7 @@
           >
             <ng-container *ngIf="!editTodos.includes(todo); else editTD">
               <td>{{ todo.title }}</td>
-              <td>{{ todo.isCompleted ? "Completed" : "In progress" }}</td>
+              <td>{{ todo.status }}</td>
             </ng-container>
 
             <ng-template #editTD>
@@ -73,7 +88,7 @@
                   name="status"
                   id="status"
                   (keypress)="submitTodo($event, todo)"
-                  [(ngModel)]="todo.isCompleted"
+                  [(ngModel)]="todo.status"
                   placeholder="Status"
                   class="form-control"
                 />
@@ -95,8 +110,6 @@
         </tbody>
       </table>
     </div>
-
-    
   </div>
   <div class="col-md-8"></div>
 </div>

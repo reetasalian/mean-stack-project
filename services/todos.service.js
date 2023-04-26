@@ -13,8 +13,7 @@ exports.getTodos = async function(req, res){
 exports.createTodo = async function(todo){
     var newTodo = new ToDo({
         title: todo.title,
-        isCompleted: todo.isCompleted,
-        // date: new Date(),
+        status: todo.status,
     })
 
     try {
@@ -41,7 +40,7 @@ exports.updateTodo = async function(todo){
     console.log(oldTodo)
 
     oldTodo.title = todo.title
-    oldTodo.isCompleted = todo.isCompleted
+    oldTodo.status = todo.status
 
 
     console.log(oldTodo)

@@ -1,12 +1,11 @@
 class Todo {
     _id:string;
     title: string;
-    isCompleted: boolean;
+    status: string;
 
     constructor(
     ){
         this.title = "";
-        this.isCompleted = false;
     }
 }
 

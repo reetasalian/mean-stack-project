@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoService } from './todo.service';
 import Todo from './todo.model';
+import { NgForm } from '@angular/forms';
 // import { Todo } from './todo';
 
 @Component({
@@ -14,6 +15,16 @@ export class AppComponent {
   public newTodo: Todo = new Todo();
   editTodos: Todo[] = [];
   showCreateToDo : boolean = false;
+
+  name = 'Angular';
+  Category="";
+  statusList=[{
+    id:1,
+    status:'In progress'
+  },{
+    id:2,
+    status:'Completed'
+  }]
 
   constructor(private todoService: TodoService){
   }
@@ -72,5 +83,9 @@ export class AppComponent {
       console.log('ToDo deleted successfully',res);
       this.todosList.splice(this.todosList.indexOf(todo), 1);
     })
+  }
+
+  onSubmit(f: NgForm){
+    console.log('form value -',f.value);
   }
 }

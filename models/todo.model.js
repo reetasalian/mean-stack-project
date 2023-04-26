@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 var todoSchema = new mongoose.Schema({
     title : String,
-    isCompleted : Boolean
+    status : String
 })
 
 module.exports = mongoose.model('ToDo',todoSchema);
-    // date : Date

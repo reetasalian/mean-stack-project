@@ -12,8 +12,7 @@ exports.getTodos = async function(req, res, next){
 exports.createTodo = async function(req, res, next){
     var todo = {
         title: req.body.title,
-        isCompleted: req.body.isCompleted,
-        // date: req.body.date
+        status: req.body.status,
     }
     try{
         var createdTodo = await TodoService.createTodo(todo)
@@ -34,7 +33,7 @@ exports.updateTodo = async function(req, res, next){
     var todo = {
         id,
         title: req.body.title ? req.body.title : null,
-        isCompleted: req.body.isCompleted !== "" ? req.body.isCompleted : null,
+        status: req.body.status !== "" ? req.body.status : null,
         // date: req.body.date ? req.body.date : null
     }
 
