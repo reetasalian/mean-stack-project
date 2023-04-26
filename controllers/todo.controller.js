@@ -51,7 +51,8 @@ exports.removeTodo = async function(req, res, next){
     var id = req.params.id;
 
     try{
-        var deleted = await TodoService.deleteTodo(id)
+        var deleted = await TodoService.deleteTodo(id);
+        console.log("deleted",deleted);
         return res.status(204).json({status:204, data :deleted, message: "Succesfully Todo Deleted"})
     }catch(e){
         return res.status(400).json({status: 400, message: e.message})

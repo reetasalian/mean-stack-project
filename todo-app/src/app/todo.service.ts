@@ -14,13 +14,27 @@ export class TodoService {
 
   constructor(private http : HttpClient) { }
 
-  getToDos(): Observable<Todo[]>{
-    return this.http.get<Todo[]>(this.todoUrl+'/')
+  getToDos(): Observable<any>{
+    return this.http.get<any>(this.todoUrl+'/')
+    .pipe(map(res  => {
+      return res.data;
+    }))
+  }
+
+  createTodo(todo: Todo): Observable<any>{
+    console.log('create todo req body -',todo);
+    return this.http.post(`${this.todoUrl}/create`, todo);
+  }
+
+  editTodo(todo:Todo): Observable<any>{
+    return this.http.put(`${this.todoUrl}/`, todo);
+  }
+
+  deleteTodo(id:string):any{
+    let deleteUrl = `${this.todoUrl}/${id}`
+    return this.http.delete(deleteUrl)
     .pipe(map(res  => {
       return res;
     }))
-/*     .map(res  => {
-      return res["data"].docs as Todo[];
-    }) */
   }
 }
